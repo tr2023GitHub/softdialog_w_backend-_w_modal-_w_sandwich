@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}О решении{% endblock %}
+
+{% block main %}
+    <div class="more-card">
+        <center><a href="/main_list"> Каталог </a><a href="#">-- Описание решения</a></center>
+        <div class="more-card__container">
+            <div class="card-wrapper">
+                <div class="card-wrapper__border-left">
+                    <div class="card-wrapper__border-left__cels">
+                        <p class="pay">Платное решение</p>
+                        <p class="soft_industry">Отрасль: {{ind_soft}}</p>
+                    </div>
+                    <!-- <img src="source/files/toir_logo.jpg" alt=""> -->
+                    <h2 class="name-soft">{{name_soft}}</h2>
+                    <div class="card-wrapper__border-left__cels">
+                        <p class="soft_class">{{class_soft}}</p>
+                        <p class="soft_compatibility">Совместима с: Alpha.Platform</p>
+                    </div>
+                    <p class="min_dsc">{{min_dsc}}</p>
+                    <div class="button">
+                        <a class="bt1" href="#">Попробовать бесплатно</a>
+                        <a class="bt2" href="#">Узнать цену</a>
+                    </div>
+                </div> <!-- "card-wrapper__border-left"   -->
+                <div class="card-wrapper__border-right">
+                    <h3>Разработчик</h3>
+                    <img src="/static/files/{{logo_com}}" alt="logo">
+                    <div class="card-wrapper__border-right__details">
+                        <h3 class="title">Подробнее:</h3>
+                        <ul>
+                                <li><a href="{{site_com}}"><img src="/static/files/globe.svg" alt="arrow">
+                                            Сайт решений</a></li>
+                                <li><a href="#"><img src="/static/files/book.svg" alt="arrow">
+                                            Справка</a></li>
+                                <li><a href="#" id="openModalButton" class="btn btn-primary"><img src="/static/files/question.svg" alt="arrow">
+                                            Задать вопрос</a></li>
+                        </ul>
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal fade" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Задать вопрос</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body" id="modalContent">
+                                        <!-- AJAX загрузит форму сюда -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        <h3 class="title">Работа с ОС:</h3>
+                        <ul>
+                            <li><img src="/static/files/windows.png" alt="sys wind"> Windows</li>
+                            <li></li>
+                        </ul>
+                        <h3 class="title">Лицензирование:</h3>
+                        <ul>
+                                <li><img src="/static/files/licenses.png" alt="sys wind"> по количеству объектов</li>
+                                <li></li>
+                        </ul>
+                    </div>
+                </div> <!-- "card-wrapper__border-right"   -->
+            </div><!-- card-wrapper -->
+        </div> <!--"more-card__container" -->
+
+        <nav class="dsc-line">
+            <ul class="ajax-list">
+                <li id="btn1" data-page="dsc.html" data-max-dsc="{{ max_dsc }}">Описание</li>
+                <li id="btn2" data-page="licensing.html ">Лицензирование</li>
+            </ul>
+            <div id="content">
+                {% include "dsc.html" %}
+            </div>
+            
+        </nav>
+    </div>
+    <!-- Подключаем файл modal.js -->
+    <script src="{{ url_for('static', filename='../static/js/modal.js') }}"></script>
+    <!-- Подключение bookmarks.js -->
+    <script src="{{ url_for('static', filename='../static/js/bookmarks.js') }}"></script>
+      
+{% endblock %}

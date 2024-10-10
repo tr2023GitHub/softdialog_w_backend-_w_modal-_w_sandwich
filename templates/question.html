@@ -1,0 +1,26 @@
+        
+  <!-- Модальное окно  с формой Запроса-->
+  <form class="question" id="questionForm" action="/send_email" method="POST">
+    <label>
+      Ваше имя:<span class="required">*</span>
+      <input type="text" name="name" placeholder="Иван Иванов" required >
+    </label>
+    <label>
+      Электронная почта:<span class="required">*</span>
+      <input type="email" name="email" placeholder="example@email.com" required>
+    </label>
+    <label>
+      Вопрос:
+      <textarea name="comment" placeholder="Задайте вопрос"></textarea>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox" name="agreement" required>
+      Я согласен на обработку персональных данных
+    </label>
+    <p class="note">Поля, отмеченные <span class="required">*</span>, обязательны для заполнения.</p>
+    <button type="submit" class="question-btn">
+      Отправить
+    </button>
+  </form>
+    
+   

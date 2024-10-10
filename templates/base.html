@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Добавим ссылку на jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Подключаем jQuery и Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../static/styles/reset.css">
+  <link rel="stylesheet" href="/static/styles/style.css" />
+  
+  <title>{% block title%}{% endblock %}</title>
+</head>
+
+<body>
+  
+  <header class="header">
+    <div class="contaner">
+      <div class="header__title">
+        <img src="../static/images/sd_logo.svg" alt="logo" class="logo" />
+        <p class="header__title__phone">
+          +7-812-995-00-95<br> ЗАКАЗАТЬ ЗВОНОК
+        </p>
+        <!-- Кнопка сэндвич-меню -->
+        <p class="menu-btn" id="menu-btn">
+          &#9776; <!-- Символ сэндвича -->
+        </p>
+      </div>
+      <h1 class="text-h1">
+        Портал российских цифровых решений для промышленности
+      </h1>
+      <h4 class="text-h4">ООО "СкадаСистемы" <br> Поставщик решений </h4>
+    </div>
+  </header>
+  <section class="menu-bg">
+    <div class="info">
+      <div class="container">
+        <nav class="menu-bg__grid">
+          {% for b in menu %}
+          <div class="menu-bg__grid-item">
+            <h4 class="menu-bg__h4"><a href="{{b.link}}" class="menu_link">{{b.name}}</a>
+            </h4>
+          </div>
+          {% endfor %}
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <div class="main container">
+    <!-- унаследовав этот шаблон будет подставляться HTML код вместо block -->
+    {% block main %}
+    {% endblock %}
+  </div>
+
+  <footer class="footer">
+    <div class="conteiner">
+      <h2 class="text-h2"></h2>
+      <div class="footer__grid">
+        <div class="footer__item">
+          <img class="footer__icon" src="../static/images/map-icon.svg" alt="location">
+          <h3 class="text-h3 footer__h3 footer__h3-gray">
+            АДРЕС
+          </h3>
+          <h3 class="text-h3 footer__h3">
+            г. Санкт-Петербург,<br> Торфяная дорога дом 7, лит. Ф, офис 604.
+          </h3>
+        </div>
+        <div class="footer__item">
+          <img class="footer__icon" src="../static/images/phone-icon.svg" alt="phone">
+          <h3 class="text-h3 footer__h3 footer__h3-gray">
+            ТЕЛЕФОН
+          </h3>
+          <h3 class="text-h3 footer__h3">
+            +7-812-995-00-95
+          </h3>
+        </div>
+        <div class="footer__item">
+          <a href="mailto:t.reva@scadasystems.ru" >
+            <img class="footer__icon " src="../static/images/mail-icon.svg" alt="e-mail">
+            <h3 class="text-h3 footer__h3 footer__h3-gray ">
+              E-MAIL
+            </h3>
+            <h3 class="text-h3 footer__h3 ">
+              info@softdialog.ru
+            </h3>
+          </a>
+        </div>
+        <div class="footer__item">
+          <a href="https://www.youtube.com/channel/UCIe3Uj1eH__nx28ia9mgFaw" target="_blank">
+            <img class="footer__icon" src="../static/images/yt-icon.svg" alt="YouTube">
+          </a>
+        </div>
+        <div class="footer__item">
+          <a href="https://t.me/ru_scadasystems" target="_blank">
+            <img class="footer__icon" src="../static/images/tg-icon.svg" alt="Telegram">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Модальное меню -->
+  <div id="modal-menu" class="modal-menu">
+    <div class="menu-content">
+        <a href="{{ url_for('main_list') }}">
+          <span class="material-icons">build</span> Каталог решений
+        </a>
+        <a href="{{ url_for('company') }}">
+          <span class="material-icons">business</span> Компания
+        </a>
+        <a href="{{ url_for('partners') }}">
+          <span class="material-icons">group</span> Партнеры
+        </a>
+        <a href="#" id="openModalButton">
+          <span class="material-icons">help</span> Задать вопрос
+        </a>
+        <hr>
+        <a href="#" class="close-btn" id="close-btn">Закрыть</a>
+    </div>
+  </div>
+  <!-- Подключаем файл sandwich.js -->
+  <script src="{{ url_for('static', filename='../static/js/sandwich.js') }}"></script>
+ </body>
+
+</html>

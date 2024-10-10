@@ -1,0 +1,69 @@
+<!-- наследоуемся от базового шаблона, дословно расширяем base.html -->
+{% extends 'base.html' %}
+
+{% block title %}Программы{% endblock %}
+
+{% block main %}
+<div class="main-container">
+    <form method="post">
+        <aside class="menu__list">
+            <h1 class="menu-list__h1">Класс продуктов</h1>
+
+            {% for class_item in classes %}
+            <li>
+                <input type="checkbox" name="class_filter" value="{{ class_item[0] }}" {% if class_item[0] in
+                    selected_classes %}checked{% endif %}>
+                {{ class_item[0] }}
+            </li>
+            {% endfor %}
+            <p></p>
+            <h1 class="menu-list__h1">Отрасли</h1>
+            {% for ind_item in industries %}
+            <li>
+                <input type="checkbox" name="ind_filter" value="{{ ind_item[0] }}" {% if ind_item[0] in
+                    selected_industries %}checked{% endif %}>
+                {{ ind_item[0] }}
+            </li>
+            {% endfor %}
+            <li>
+                <p>-----------------------</p>
+                <input type="checkbox" name="clear_filter" value="clear">
+                Clear All
+            </li>
+            <p> </p>
+            <button type="submit">Filter</button>
+        </aside>
+    </form>
+
+    <article class="card__wide">
+        {% for c in cards %}
+            {% for key1, value1 in data %}
+                {% for key2, value2 in data_ind %}
+                    <!-- <p>{{key1}} "+" {{key2}}</p> -->
+                    {% if c.id_class == key1 and c.id_industry == key2 %}
+                        <section class="card-wide__grid">
+                            <a class="card-wide__logo" href="{{c.site}}">
+                                <!-- {% if options == option3 %} -->
+                                <img  class="card-wide__icon" src="static/files/{{c.logo}}" alt="logotip">
+                                <!-- {% endif %} -->
+                            </a>
+                            <div class="card-wide__desc">
+                                <h3 class="card-wide__desc-title">
+                                    <a href="card/{{c.id}}">{{c.name_soft}}</a>
+                                </h3>
+                                <p class="card-wide__desc-text">
+                                    {{c.min_description}}
+                                </p>
+                                <footer class="card-wide__desc-footer">
+                                    <a href="{{c.site}}">{{c.name_company}}</a>
+                                </footer>
+                            </div>
+                        </section>
+
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        {% endfor %}
+    </article>
+</div>
+{% endblock%}
